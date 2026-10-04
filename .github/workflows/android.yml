@@ -31,6 +31,7 @@ jobs:
 
     - name: Compile native injector (arm64-v8a)
       run: |
+        mkdir -p app/src/main/assets
         CC="$NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android26-clang++"
         $CC -O2 -fPIE -pie -o app/src/main/assets/injector native/injector.cpp
         file app/src/main/assets/injector
