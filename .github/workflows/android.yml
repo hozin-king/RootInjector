@@ -1,0 +1,50 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: set up JDK 17
+      uses: actions/setup-java@v5
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    # Native helper (arm64) dikompilasi dari native/injector.cpp
+    - name: Install Android NDK r26d
+      run: |
+        mkdir -p /tmp/ndk-dl && cd /tmp/ndk-dl
+        curl -sSL -o ndk.zip https://dl.google.com/android/repository/android-ndk-r26d-linux.zip
+        unzip -q ndk.zip
+        echo "NDK_HOME=/tmp/ndk-dl/android-ndk-r26d" >> $GITHUB_ENV
+
+    - name: Compile native injector (arm64-v8a)
+      run: |
+        CC="$NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang++"
+        $CC -O2 -fPIE -pie -o app/src/main/assets/injector native/injector.cpp
+        file app/src/main/assets/injector
+        ls -la app/src/main/assets/
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build debug APK
+      run: ./gradlew assembleDebug --stacktrace
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: rootinjector-apk
+        path: app/build/outputs/apk/debug/*.apk
+        if-no-files-found: error

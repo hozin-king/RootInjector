@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvRootStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cek root..."
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingBottom="12dp" />
+
+        <!-- INJECT -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Inject Library (.so)"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp" />
+
+        <EditText
+            android:id="@+id/etPackage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Package target (mis. com.kiloo.subwaysurf)"
+            android:inputType="text"
+            android:text="com.kiloo.subwaysurf" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnPid"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ambil PID" />
+
+            <TextView
+                android:id="@+id/tvPid"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="PID: -"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnPickSo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih file .so" />
+
+        <TextView
+            android:id="@+id/tvSo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Belum ada .so dipilih"
+            android:textSize="13sp"
+            android:paddingBottom="4dp" />
+
+        <Button
+            android:id="@+id/btnInject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INJECT!" />
+
+        <!-- MEMORI -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. Baca / Tulis Memori"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp" />
+
+        <EditText
+            android:id="@+id/etAddr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Alamat (hex, mis. 0x7a1b2c3d40)"
+            android:inputType="text" />
+
+        <Spinner
+            android:id="@+id/spType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nilai (untuk tulis / baca string)"
+            android:inputType="text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnRead"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Baca" />
+
+            <Button
+                android:id="@+id/btnWrite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tulis" />
+        </LinearLayout>
+
+        <!-- CARI -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. Cari Nilai di Memori"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp" />
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nilai yang dicari"
+            android:inputType="text" />
+
+        <Spinner
+            android:id="@+id/spSearchType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cari" />
+
+        <!-- LOG -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvLog"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#111111"
+            android:textColor="#00ff88"
+            android:textSize="12sp"
+            android:padding="8dp"
+            android:scrollbars="vertical"
+            android:typeface="monospace" />
+
+    </LinearLayout>
+</ScrollView>
